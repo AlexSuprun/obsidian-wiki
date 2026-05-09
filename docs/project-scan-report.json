@@ -1,0 +1,57 @@
+{
+  "workflow_version": "1.2.0",
+  "timestamps": {
+    "started": "2026-05-09T07:24:31Z",
+    "last_updated": "2026-05-09T07:24:31Z",
+    "completed": "2026-05-09T07:24:31Z"
+  },
+  "mode": "initial_scan",
+  "scan_level": "quick",
+  "project_root": "/Users/alexsuprun/my-code/the-journey/.worktrees/feat--wiki-claude-code-chats/obsidian-wiki",
+  "project_knowledge": "/Users/alexsuprun/my-code/the-journey/.worktrees/feat--wiki-claude-code-chats/obsidian-wiki/docs",
+  "project_classification": {
+    "repository_type": "monolith",
+    "project_types": [
+      { "part_id": "obsidian-wiki", "project_type_id": "library", "display_name": "Markdown skill framework" }
+    ]
+  },
+  "project_parts": [
+    {
+      "part_id": "obsidian-wiki",
+      "root_path": ".",
+      "project_type_id": "library",
+      "primary_languages": ["Markdown", "Bash"],
+      "framework": "Karpathy LLM Wiki pattern (skill-based, agent-executed)"
+    }
+  ],
+  "completed_steps": [
+    { "step": "step_1", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Classified as monolith, single part, type=library (markdown skill framework)" },
+    { "step": "step_2", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Found existing docs: README.md, SETUP.md, AGENTS.md, CLAUDE.md (alias), GEMINI.md (alias), .hermes.md (alias), .github/copilot-instructions.md, per-skill SKILL.md files" },
+    { "step": "step_3", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Tech stack: Markdown skills + Bash setup; no runtime/build system" },
+    { "step": "step_4", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Quick scan — pattern-based; no API/data-model/UI/asset scans applicable" },
+    { "step": "step_5", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Source tree documented" },
+    { "step": "step_6", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Dev/deploy guide written (setup.sh + .env)" },
+    { "step": "step_8", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Architecture written" },
+    { "step": "step_9", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Supporting docs written" },
+    { "step": "step_10", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Master index generated" },
+    { "step": "step_11", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Validated; no incomplete markers" },
+    { "step": "step_12", "status": "completed", "timestamp": "2026-05-09T07:24:31Z", "summary": "Workflow complete" }
+  ],
+  "current_step": "completed",
+  "findings": {
+    "skill_count_local": 31,
+    "agent_directories": [".claude/skills/", ".cursor/skills/", ".windsurf/skills/", ".agents/skills/", ".kiro/skills/", ".agent/rules/", ".agent/workflows/"],
+    "global_install_targets": ["~/.claude/skills/ (wiki-update + wiki-query only)", "~/.gemini/skills/", "~/.codex/skills/", "~/.hermes/skills/", "~/.openclaw/skills/", "~/.copilot/skills/", "~/.trae/skills/", "~/.trae-cn/skills/", "~/.kiro/skills/", "~/.agents/skills/"],
+    "config_resolution": "1) walk-up .env containing OBSIDIAN_VAULT_PATH; 2) ~/.obsidian-wiki/config; 3) prompt wiki-setup",
+    "vault_layout": ["index.md", "log.md", "hot.md", ".manifest.json", "_meta/", "_insights.md", "_raw/", "concepts/", "entities/", "skills/", "references/", "synthesis/", "journal/", "projects/<name>/"]
+  },
+  "outputs_generated": [
+    "project-scan-report.json",
+    "project-overview.md",
+    "architecture.md",
+    "source-tree-analysis.md",
+    "development-guide.md",
+    "index.md"
+  ],
+  "resume_instructions": "Workflow complete. Re-run the document-project skill in full_rescan mode to refresh."
+}
