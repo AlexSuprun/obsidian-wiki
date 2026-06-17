@@ -46,36 +46,38 @@ Skills live in `.skills/<name>/SKILL.md`. Match the user's intent to the right s
 | User says something like… | Skill |
 |---|---|
 | "set up my wiki" / "initialize" | `wiki-setup` |
-| "/wiki-history-ingest claude" / "/wiki-history-ingest codex" / "/wiki-history-ingest hermes" | `wiki-history-ingest` |
-| "/ingest-url <url>" / "add this URL" / "ingest this link" / "save this page" | `ingest-url` |
-| "ingest" / "add this to the wiki" / "process these docs" | `wiki-ingest` |
+| "/wiki-history-ingest claude" / "/wiki-history-ingest codex" / "/wiki-history-ingest hermes" / "/wiki-history-ingest pi" | `wiki-history-ingest` |
+| "ingest" / "add this to the wiki" / "process these docs" / "process this export" / "ingest this data" / logs, transcripts / "/ingest-url <url>" / "add this URL" / "ingest this link" / "save this page" | `wiki-ingest` |
 | "import my Claude history" / "mine my conversations" | `claude-history-ingest` |
 | "import my Codex history" / "mine my Codex sessions" | `codex-history-ingest` |
 | "import my Hermes history" / "mine my Hermes memories" / "ingest ~/.hermes" | `hermes-history-ingest` |
 | "import my OpenClaw history" / "mine my OpenClaw sessions" / "ingest ~/.openclaw" | `openclaw-history-ingest` |
 | "import my Copilot history" / "mine my Copilot sessions" / "ingest ~/.copilot" | `copilot-history-ingest` |
-| "process this export" / "ingest this data" / logs, transcripts | `data-ingest` |
-| "ingest this obsidian wiki" / "ingest the obsidian-wiki project" | `obsidian-wiki-ingest` |
+| "import my Pi history" / "mine my Pi sessions" / "ingest ~/.pi" | `pi-history-ingest` |
 | "what's the status" / "what's been ingested" / "show the delta" | `wiki-status` |
 | "wiki insights" / "hubs" / "wiki structure" | `wiki-status` (insights mode) |
 | "what do I know about X" / "find info on Y" / any question | `wiki-query` |
 | "audit" / "lint" / "find broken links" / "wiki health" | `wiki-lint` |
+| "dedup my wiki" / "find duplicate pages" / "merge duplicates" / "identity resolution" / "consolidate my wiki" | `wiki-dedup` |
 | "rebuild" / "start over" / "archive" / "restore" | `wiki-rebuild` |
 | "link my pages" / "cross-reference" / "connect my wiki" | `cross-linker` |
 | "fix my tags" / "normalize tags" / "tag audit" | `tag-taxonomy` |
 | "update wiki" / "sync to wiki" / "save this to my wiki" | `wiki-update` |
-| "export wiki" / "export graph" / "graphml" / "neo4j" | `wiki-export` |
+| "export wiki" / "export graph" / "graphml" / "neo4j" / "export to OKF" / "OKF bundle" / "open knowledge format" | `wiki-export` |
+| "import wiki" / "import from export" / "load graph.json" / "import vault" / "import OKF bundle" / "/wiki-import" | `wiki-import` |
 | "color my graph" / "color code obsidian" / "color by tag/category/visibility" | `graph-colorize` |
-| "save this" / "/wiki-capture" / "capture this" / "file this conversation" | `wiki-capture` |
+| "save this" / "/wiki-capture" / "capture this" / "file this conversation" / "/wiki-capture --quick" / "quick capture" / "capture this finding" / "save this gotcha" / "drop to raw" | `wiki-capture` |
 | "/wiki-research [topic]" / "research X" / "find everything about Y" | `wiki-research` |
 | "create a dashboard" / "vault dashboard" / "show all X as a table" / "dynamic view" | `wiki-dashboard` |
 | "synthesize my wiki" / "find connections" / "what concepts keep coming up together" / "/wiki-synthesize" | `wiki-synthesize` |
 | "create a new skill" | `skill-creator` |
-| "/wiki-claude [topic]" / "/wiki-codex [topic]" / "/wiki-hermes [topic]" / "/wiki-openclaw [topic]" / "/wiki-copilot [topic]" | `wiki-agent` |
+| "/vault-skill-factory" / "make a skill from my wiki" / "turn these pages into a skill" / "package my notes on X as a skill" / "build a domain-expert skill from my vault" | `vault-skill-factory` |
+| "/wiki-claude [topic]" / "/wiki-codex [topic]" / "/wiki-hermes [topic]" / "/wiki-openclaw [topic]" / "/wiki-copilot [topic]" / "/wiki-pi [topic]" | `wiki-agent` |
 | "/memory-bridge" / "browse codex memory" / "what did codex know about X" / "compare tool memories" / "cross-tool memory" | `memory-bridge` |
 | "/daily-update" / "morning sync" / "refresh the wiki index" / "set up the daily cron" / "install terminal notification" | `daily-update` |
 | "/impl-validator" / "check this implementation" / "validate what you did" / "is this correct?" | `impl-validator` |
 | "/wiki-switch NAME" / "switch to my work wiki" / "switch vault" / "change wiki" / "list my wikis" / "show my vaults" / "create a new vault config" | `wiki-switch` |
+| "/wiki-digest" / "what did I learn this week" / "weekly digest" / "knowledge summary" / "what's new in my wiki" / "summarize my recent learning" / "monthly review" | `wiki-digest` |
 
 ## Cross-Project Usage
 
@@ -127,3 +129,5 @@ See `wiki-query` and `wiki-export` skills for how the filter is applied.
 ## Architecture Reference
 
 For the full pattern (three-layer architecture, page templates, project org), read `.skills/llm-wiki/SKILL.md`.
+
+The vault format is structurally conformant with the [Open Knowledge Format (OKF) v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) — markdown files with YAML frontmatter, category subfolders, reserved `index.md`/`log.md`. `wiki-export` (OKF mode) and `wiki-import` are the bridge: they translate between our native frontmatter (`title`/`category`/`tags`/`sources`/`created`/`updated` + `summary`) and OKF (`type`/`title`/`description`/`resource`/`tags`/`timestamp`), making vaults exchangeable with any OKF tool. The OKF round-trip is lossless; the `graph.json` round-trip is not.
